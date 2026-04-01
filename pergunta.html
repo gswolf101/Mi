@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>💖 Para minha querida namorada 💖</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      background: linear-gradient(to bottom right, #ffe6f0, #ffe0e6);
+      font-family: 'Comic Sans MS', cursive, sans-serif;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      overflow: hidden;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      font-size: 1.5rem;
+      color: #d63384;
+      margin-bottom: 10px;
+    }
+
+    .heart {
+      font-size: 3rem;
+      animation: pulse 1s infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); }
+      50% { transform: scale(1.2); }
+      100% { transform: scale(1); }
+    }
+
+    p {
+      font-size: 1rem;
+      margin: 10px 0;
+      color: #333;
+    }
+
+    .buttons {
+      position: relative;
+      width: 300px;
+      height: 100px;
+      overflow: hidden;
+      border-radius: 15px;
+      margin-top: 10px;
+    }
+
+    button {
+      position: absolute;
+      width: 80px;
+      height: 40px;
+      font-size: 0.9rem;
+      border: none;
+      border-radius: 20px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .yes {
+      background-color: #ff69b4;
+      color: white;
+      z-index: 1;
+    }
+
+    .yes:hover {
+      background-color: #ff1493;
+    }
+
+    .no {
+      background-color: #f8d7da;
+      color: #721c24;
+      z-index: 2;
+    }
+
+    .message {
+      margin-top: 20px;
+      font-size: 1rem;
+      color: #d63384;
+      display: none;
+      animation: fadeIn 1s ease-in-out forwards;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
+    @media (max-width: 600px) {
+      h1 { font-size: 1.2rem; }
+      .heart { font-size: 2.5rem; }
+      p { font-size: 0.9rem; }
+      button { padding: 8px 16px; font-size: 0.8rem; width: 70px; height: 35px; }
+    }
+  </style>
+</head>
+<body>
+  <div class="heart">💖</div>
+  <h1>Para minha querida Mirelli!</h1>
+  <p>Você quer namorar comigo??</p>
+
+  <div class="buttons">
+    <button class="yes" onclick="showMessage()">Sim</button>
+    <button class="no" tabindex="-1">Não</button>
+  </div>
+
+  <div class="message" id="message">Awwww! Eu também te amo! 💕 fica tranquila que eu vou fazer o pedido🌹</div>
+
+  <script>
+    function showMessage() {
+      document.getElementById('message').style.display = 'block';
+    }
+
+    function moveButton() {
+      const button = document.querySelector('.no');
+      const container = document.querySelector('.buttons');
+      const maxX = container.clientWidth - button.offsetWidth;
+      const maxY = container.clientHeight - button.offsetHeight;
+      const randX = Math.random() * maxX;
+      const randY = Math.random() * maxY;
+      button.style.left = `${randX}px`;
+      button.style.top = `${randY}px`;
+    }
+
+    window.addEventListener('load', () => {
+      const yesButton = document.querySelector('.yes');
+      const noButton = document.querySelector('.no');
+      const container = document.querySelector('.buttons');
+      const containerWidth = container.clientWidth;
+      const containerHeight = container.clientHeight;
+      yesButton.style.left = `${(containerWidth / 2) - 90}px`;
+      yesButton.style.top = `${(containerHeight / 2) - 20}px`;
+      noButton.style.left = `${(containerWidth / 2) + 10}px`;
+      noButton.style.top = `${(containerHeight / 2) - 20}px`;
+      noButton.addEventListener('mouseover', moveButton);
+      noButton.addEventListener('click', (e) => {
+        e.preventDefault();
+        moveButton();
+      });
+      noButton.addEventListener('focus', moveButton);
+    });
+  </script>
+</body>
+</html>
